@@ -1,9 +1,8 @@
-﻿int GeneratingRandomNumber()
+﻿int GeneratingRandomNumber(ref int a)
 {
-    var rnd = new Random();
-    int number = rnd.Next(0, 1000);
-    Console.Write($"{number} ");
-    return number;
+    int b = a % 10;
+    a /= 10;
+    return (b);
 }
 
 Console.WriteLine("Enter N");
@@ -17,11 +16,11 @@ if (probability >= m)
     int sum = 0;
     for (int i = 0; i < n; i++)
     {
-        int number = GeneratingRandomNumber();
+        int number = rnd.Next(0,1000);
+        Console.Write($"{number} ");
         while (number > 0)
         {
-            sum += number % 10;
-            number /= 10;
+            sum += GeneratingRandomNumber(ref number);
         }
     }
     Console.WriteLine();
@@ -31,11 +30,11 @@ else
 {
     for (int i = 0; i < n; i++)
     {
-        int number = GeneratingRandomNumber();
+        int number = rnd.Next(0, 1000);
+        Console.Write($"{number} ");
         while (number > 0)
         {
-            Console.Write(number % 10);
-            number /= 10;
+            Console.Write(GeneratingRandomNumber(ref number));
         }
         Console.WriteLine();
     }
