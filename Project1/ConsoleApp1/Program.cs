@@ -28,8 +28,8 @@ else
         Console.Write($"{number} ");
         while (number > 0)
         {
-        Console.Write(number % 10);
-        number /= 10;
+            Console.Write(number % 10);
+            number /= 10;
         }
         Console.WriteLine();
     }
