@@ -7,11 +7,27 @@ namespace ConsoleApp2
 {
     public static class Program
     {
+
+        static void Writing(string text, string filep)
+        {
+            if (filep == " ")
+            {
+                Console.WriteLine(text);
+            }   
+            else
+            {
+                using (StreamWriter writer = new StreamWriter(filep, true))
+                {
+                    writer.WriteLine(text);
+                }
+            }
+        }
         public static void Main(string[] args)
         {
             int n = 0;
             double m = 0;
             bool isN = false, isM = false;
+            string filepath = " ";
             if (args.Length != 0)
             {
                 for (int i = 0; i < args.Length; i++)
@@ -25,6 +41,9 @@ namespace ConsoleApp2
                         case "-m":
                             m = Convert.ToDouble(args[i+1]);
                             isM = true;
+                            break;
+                        case "-f":
+                            filepath = args[i+1];
                             break;
                     }
                 }
@@ -42,18 +61,18 @@ namespace ConsoleApp2
             var rnd = new Random();
             double probability = new Random().NextDouble();
             IEnumerable<int> numbers = Enumerable.Range(0, n).Select(_ => rnd.Next(0, 1000)).ToList();
-            Console.WriteLine("Initial numbers are:");
+            Writing("Initial numbers are:", filepath);
             foreach (var k in numbers)
             {
-                Console.Write($"{k} ");
+                Writing($"{k} ", filepath);
             }
-            Console.WriteLine();
             if (probability >= m)
             {
+                Writing($"Reverted numbers are", filepath);
                 foreach (var k in numbers)
                 {
                     string b = new string (k.ToString().Reverse().ToArray());
-                    Console.Write($"{b} ");
+                    Writing($"{b} ", filepath);
                 }
             }
             else
@@ -67,7 +86,7 @@ namespace ConsoleApp2
                         sum += Convert.ToInt32(b.ToString());
                     }
                 }
-                Console.Write($"Sum of all chasrecters of this numbers are {sum}");
+                Writing($"Sum of all chasrecters of this numbers are {sum}", filepath);
             }
         }
     }
