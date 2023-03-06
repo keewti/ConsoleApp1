@@ -9,19 +9,35 @@ namespace ConsoleApp2
     {
         public static void Main(string[] args)
         {
-            int n;
-            double m;
-            if (args.Length == 0)
+            int n = 0;
+            double m = 0;
+            bool isN = false, isM = false;
+            if (args.Length != 0)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    switch (args[i])
+                    {
+                        case "-n":
+                            n = Convert.ToInt32(args[i+1]);
+                            isN = true;
+                            break;
+                        case "-m":
+                            m = Convert.ToDouble(args[i+1]);
+                            isM = true;
+                            break;
+                    }
+                }
+            }
+            if (!isN)
             {
                 Console.WriteLine("Enter N");
                 n = Convert.ToInt32(Console.ReadLine());
+            }
+            if (!isM)
+            {
                 Console.WriteLine("Enter M");
                 m = Convert.ToDouble(Console.ReadLine());
-            }
-            else
-            {
-                n = Convert.ToInt32(args[0]);
-                m = Convert.ToDouble(args[1]);
             }
             var rnd = new Random();
             double probability = new Random().NextDouble();
