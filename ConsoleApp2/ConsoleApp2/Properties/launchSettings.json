@@ -1,7 +1,8 @@
 {
   "profiles": {
     "ConsoleApp2": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "-n 6 -m 0,5 -f F:\\zhalkie_potugi\\ConsoleApp1\\ConsoleApp1\\wtf.txt"
     }
   }
 }
