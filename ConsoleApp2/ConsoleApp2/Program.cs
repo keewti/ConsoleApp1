@@ -7,6 +7,7 @@ namespace ConsoleApp2
 {
     public static class Program
     {
+
         public static void Main(string[] args)
         {
             int n = 0;
@@ -20,12 +21,26 @@ namespace ConsoleApp2
                     switch (args[i])
                     {
                         case "-n":
-                            n = Convert.ToInt32(args[i+1]);
-                            isN = true;
+                            if (int.TryParse(args[i + 1], out n))
+                            {
+                                n = Convert.ToInt32(args[i + 1]);
+                                isN = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("There should be a natural number, not the thing you wrote");
+                            }
                             break;
                         case "-m":
-                            m = Convert.ToDouble(args[i+1]);
-                            isM = true;
+                            if (double.TryParse(args[i + 1], out m))
+                            {
+                                m = Convert.ToDouble(args[i + 1]);
+                                isM = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("There should be a probability between 0 and 1, not the thing you wrote");
+                            }
                             break;
                         case "-f":
                             filepath = args[i+1];
